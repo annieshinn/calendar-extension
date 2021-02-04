@@ -10,9 +10,9 @@
 [ ] More jokes! More quotes!
 [ ] Chat Tab 
 [ ] Event time/size match
-[ ] Add events 
+[ ] Add new events 
 [ ] Notifications 
-[ ] button at top to access Google Calendars link
+[ ] Addtl button to access Google Calendars link
 
 //// TASKS ////
 [X] Build out UI structure similar to pre-existing
@@ -20,11 +20,22 @@
 [ ] Modify:
   [X] Expand width
   [X] Clicking on event anywhere -> zoom (not google calendar)
-  - Add symbol/emoji at the end of each event 
   [X] Limit scrolling to 7 days
   [X] Remove ugly countdown badge
   [X] Quote/joke area
-  - Make settings page pretty
+  [X] Make settings page pretty
+  [X] Dark mode
+  - Add symbol/emoji at the end of each event 
+  - Replace ugly google cal color, while maintaining color-coding
+
+Annie S solo work log:
+- I didn't really mess with any functionality, only style such as:
+  - font color, sizing, weight, shadow
+  - background colors, shadows, etc.
+  - box sizes, (slightly widened overall so that the time area can be a bit wider/larger font)
+  - camera icon -- i edited it to blue, but it's getting desaturated somewhere along the way?
+    - i don't want it to be blue anymore it's just weird o.o
+  - Feel free to change any of the styling!
 
 
 // Optional
