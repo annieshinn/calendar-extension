@@ -1,14 +1,14 @@
 {
   "google_calendar_extension_name": {
-    "message": "Google Calendar",
+    "message": "Codesmith Calendar Extension",
     "description": "The name of this extension."
   },
   "google_calendar_extension_desc": {
-    "message": "Quick overview of your Google Calendar with one-click access to locations & documents",
+    "message": "Quick overview of your Codesmith Calendar with one-click access to Zoom and Slack.",
     "description": "Description of what this extension does."
   },
   "logo_text": {
-    "message": "Google Calendar",
+    "message": "Codesmith Calendar Extension",
     "description": "The name of the Calendar product, including the word Google."
   },
   "read_more_at_original_url": {
@@ -26,10 +26,6 @@
   "event_title_placeholder": {
     "message": "E.g. “Dinner with friends 7pm tomorrow”",
     "description": "Placeholder in the textarea where the user is instructed to type in the title of the event they want to create."
-  },
-  "quick_add_button": {
-    "message": "Add",
-    "description": "Text on the button that adds a new event to the calendar from user input."
   },
   "no_events_today": {
     "message": "No events today.",
@@ -67,10 +63,6 @@
     "message": "Update the list of events from the server.",
     "description": "Alternate text for the icon that forces syncing the calendar right away."
   },
-  "show_quick_add": {
-    "message": "Add a new event by typing in the event details.",
-    "description": "Alternate text for the icon that shows the text area where users add details of new events."
-  },
   "show_options": {
     "message": "Change options for this extension",
     "description": "Alternate text for the icon that opens the Options screen in a new window."
@@ -90,14 +82,6 @@
   "time_format": {
     "message": "Time Format",
     "description": "The header for the Options section under which the 12 hr/24 hr option is shown."
-  },
-  "option_show_time_until_next_event": {
-    "message": "Show time remaining until the next event.",
-    "description": "The name of the option that tells the user that the extension will display the time on the badge."
-  },
-  "option_time_until_next_includes_all_day_events": {
-    "message": "Include all-day events when computing the time until the next event.",
-    "description": "The name of the option that ensures all-day events are included when computing the time to next event."
   },
   "event_title_unknown": {
     "message": "Busy",

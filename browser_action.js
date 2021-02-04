@@ -30,8 +30,6 @@ var browseraction = {};
  * @const
  * @private
  */
-browseraction.QUICK_ADD_API_URL_ =
-    'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/quickAdd';
 
 /**
  * Milliseconds to wait before fading out the alert shown when the user adds
@@ -67,8 +65,6 @@ browseraction.KEY_CODE_LF = 10;
 /**
  * Char `a`, keyboard shortcut key for quick add box
  */
-browseraction.SHORTCUT_OPEN_QUICK_ADD = 'a';
-
 
 /**
  * Initializes UI elements in the browser action popup.
@@ -150,20 +146,12 @@ browseraction.installButtonClickHandlers_ = function() {
     chrome.extension.sendMessage({method: 'authtoken.update'});
   });
 
-  $('#show_quick_add').on('click', function() {
-    browseraction.toggleQuickAddBoxVisibility_(!$('#quick-add').is(':visible'));
-  });
-
   $('#sync_now').on('click', function() {
     chrome.extension.sendMessage({method: 'events.feed.fetch'}, browseraction.showEventsFromFeed_);
   });
 
   $('#show_options').on('click', function() {
     chrome.tabs.create({'url': 'options.html'});
-  });
-
-  $('#quick_add_button').on('click', function() {
-    browseraction.addNewEventIntoCalendar_();
   });
 };
 
@@ -199,28 +187,7 @@ browseraction.installKeydownHandlers_ = function() {
     if ($(e.target).is('input, textarea, select')) {
       return;
     }
-
-    // Open quick add form on `a`
-    if (e.key.toLowerCase() === browseraction.SHORTCUT_OPEN_QUICK_ADD) {
-      e.stopPropagation();
-      e.preventDefault();
-      browseraction.toggleQuickAddBoxVisibility_(true);
-    }
   });
-};
-
-
-/** @private */
-browseraction.toggleQuickAddBoxVisibility_ = function(shouldShow) {
-  if (shouldShow) {
-    $('#show_quick_add').addClass('rotated');
-    $('#quick-add').slideDown(200);
-    $('#quick-add-event-title').focus();
-  } else {
-    $('#show_quick_add').removeClass('rotated');
-    $('#quick-add').slideUp(200);
-    $('#quick-add-event-title').blur();
-  }
 };
 
 /**
@@ -319,45 +286,6 @@ function showToast(parent, summary, linkUrl) {
   }, browseraction.TOAST_FADE_OUT_DURATION_MS);
 }
 
-/** @private */
-browseraction.createQuickAddEvent_ = function(text, calendarId) {
-  var quickAddUrl =
-      browseraction.QUICK_ADD_API_URL_.replace('{calendarId}', encodeURIComponent(calendarId)) +
-      '?text=' + encodeURIComponent(text);
-  chrome.identity.getAuthToken({'interactive': false}, function(authToken) {
-    if (chrome.runtime.lastError || !authToken) {
-      chrome.extension.getBackgroundPage().background.log(
-        'getAuthToken', chrome.runtime.lastError.message);
-      return;
-    }
-
-    browseraction.startSpinner();
-    $.ajax(quickAddUrl, {
-      type: 'POST',
-      headers: {'Authorization': 'Bearer ' + authToken},
-      success: function(response) {
-        showToast($('section'), response.summary, response.htmlLink);
-        browseraction.stopSpinner();
-        chrome.extension.sendMessage({method: 'events.feed.fetch'});
-      },
-      error: function(response) {
-        browseraction.stopSpinner();
-        $('#info_bar').text(chrome.i18n.getMessage('error_saving_new_event')).slideDown();
-        window.setTimeout(function() {
-          $('#info_bar').slideUp();
-        }, constants.INFO_BAR_DISMISS_TIMEOUT_MS);
-        chrome.extension.getBackgroundPage().background.log(
-          'Error adding Quick Add event', response.statusText);
-        if (response.status === 401) {
-          chrome.identity.removeCachedAuthToken({'token': authToken}, function() {});
-        }
-      }
-    });
-    $('#quick-add').slideUp(200);
-    $('#show_quick_add').toggleClass('rotated');
-  });
-};
-
 
 /**
  * Retrieves events from the calendar feed, sorted by start time, and displays
@@ -450,8 +378,13 @@ browseraction.createEventDiv_ = function(event) {
   var end = utils.fromIso8601(event.end);
   var now = moment().valueOf();
 
+  var eventLink = event.gcal_url;
+  if (event.location) {
+    eventLink = event.location.match(/^https?:\/\//) ? event.location : 'https://codesmithla41.slack.com/ssb/redirect?entry_point=homepage_nav';
+  }
+
   var eventDiv =
-  /** @type {jQuery} */ ($('<div>').addClass('event').attr({'data-url': event.gcal_url}));
+  /** @type {jQuery} */ ($('<div>').addClass('event').attr({'data-url': eventLink}));
 
   if (!start) {  // Some events detected via microformats are malformed.
     return eventDiv;
@@ -528,13 +461,13 @@ browseraction.createEventDiv_ = function(event) {
   if (event.location) {
     var url = event.location.match(/^https?:\/\//) ?
       event.location :
-      'https://maps.google.com?q=' + encodeURIComponent(event.location);
+      'https://codesmithla41.slack.com/ssb/redirect?entry_point=homepage_nav';
     $('<a>')
       .attr({'href': url, 'target': '_blank'})
       .append($('<span>').text(event.location))
       .addClass('event-location')
       .append($('<img>').addClass('location-icon').attr({
-        'src': chrome.extension.getURL('icons/ic_action_place.png')
+        'src': chrome.extension.getURL('icons/ic_action_video.png')
       }))
       .appendTo(eventDetails);
   }

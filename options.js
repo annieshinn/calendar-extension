@@ -48,7 +48,7 @@ options.DEFAULTS_ = {};
 /**
  * Whether or not Time Remaining until the next event is shown.
  */
-options.DEFAULTS_[options.Options.BADGE_TEXT_SHOWN] = true;
+options.DEFAULTS_[options.Options.BADGE_TEXT_SHOWN] = false;
 
 /**
  * Many users are reporting that notifications are being shown at the wrong

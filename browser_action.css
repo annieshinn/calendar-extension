@@ -20,7 +20,7 @@
 }
 
 body {
-  background: #e5e5e5;
+  background: #000000;
   font-size: 14px;
   height: 480px;
   overflow-y: scroll;
@@ -93,14 +93,6 @@ section {
   padding: 0 8px;
 }
 
-#show_quick_add {
-  transition: transform 0.2s ease-in;
-}
-
-#show_quick_add.rotated {
-  transform: rotate(45deg);
-}
-
 .popup-title {
   height: 36px;
   font-size: 16px;
@@ -116,8 +108,13 @@ section {
 .quote {
   background: #FFD54F;
   padding: 4px 8px;
+  padding-bottom: 5px;
   border-radius: 8px;
   color: #000;
+  overflow: hidden;
+  /* position: relative; */
+  /* height: 30px; */
+  text-align: center;
 }
 
 #action-bar {
@@ -200,7 +197,7 @@ Otherwise there would be a small black line. */
 
 .date-header {
   color: #666;
-  background: #e5e5e5;
+  background: #2d2d2d;
   font-size: 16px;
   padding: 4px 0;
   position: sticky;
@@ -216,9 +213,9 @@ Otherwise there would be a small black line. */
 }
 
 .event {
-  background: #fff;
+  background: #202020;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  color: #333;
+  color: #87C0D0;
   cursor: pointer;
   display: flex;
   margin: 0 0 4px 0;
@@ -252,7 +249,7 @@ Otherwise there would be a small black line. */
 }
 
 .detected-event .start-time {
-  background-color: #fff;
+  background-color: #2d2d2d;
   text-align: left;
 }
 
@@ -381,6 +378,6 @@ Otherwise there would be a small black line. */
 
 .alert-new-event {
   margin-top: 10px;
-  background-color: #f9eebc;
+  background-color: #2d2d2d;
   padding: 0 8px;
 }

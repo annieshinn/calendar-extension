@@ -58,7 +58,7 @@ feeds.CALENDAR_EVENTS_API_URL_ =
  * @const
  * @private
  */
-feeds.DAYS_IN_AGENDA_ = 16;
+feeds.DAYS_IN_AGENDA_ = 7;
 
 /**
  * When the interval in DAYS_IN_AGENDA_ has no events, keep looking forward until this number is
@@ -68,7 +68,7 @@ feeds.DAYS_IN_AGENDA_ = 16;
  * @const
  * @private
  */
-feeds.MAX_DAYS_IN_AGENDA_ = 31;
+feeds.MAX_DAYS_IN_AGENDA_ = 7;
 
 /**
  * All events from visible calendars obtained during the last fetch.

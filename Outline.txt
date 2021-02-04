@@ -1,28 +1,30 @@
 //// FEATURES ////
-- Sync with current Google account's calendar 
-- Access the current week's events (Up to Saturday) 
-- Render the current week's events (Up to Saturday)
-- Settings to choose calendars
-- Refresh option
-- Join Zoom Link/ If not Zoom link, redirect to calendar 
-- Color Code/Symbol: Lectures, Breaks, Pairprogramming, Socials 
-- Daily coding quote/joke  
+[X] Sync with current Google account's calendar 
+[X] Access the current week's events
+[X] Render the current week's events
+[X] Join Zoom Link/ If not Zoom link, redirect to calendar 
+[ ] Color Code/Symbol: Lectures, Breaks, Pairprogramming, Socials 
+[X] Daily coding quote/joke  
 
 //// STRETCH FEATURES ////
-- Chat Tab 
-- Event time/size match
-- Add events 
-- Notifications 
+[ ] More jokes! More quotes!
+[ ] Chat Tab 
+[ ] Event time/size match
+[ ] Add events 
+[ ] Notifications 
+[ ] button at top to access Google Calendars link
 
 //// TASKS ////
-- Build out UI structure similar to pre-existing
-    - Test syncing google calendar!!!
-- Modify:
-    - Expand width
-    - Add symbol/emoji at the end of each event 
-    - Clicking on event anywhere -> zoom (not google calendar)
-    - Limit scrolling to this week's (up to Sat)
-    - Quote/joke area
+[X] Build out UI structure similar to pre-existing
+    [X] Test syncing google calendar!!!
+[ ] Modify:
+  [X] Expand width
+  [X] Clicking on event anywhere -> zoom (not google calendar)
+  - Add symbol/emoji at the end of each event 
+  [X] Limit scrolling to 7 days
+  [X] Remove ugly countdown badge
+  [X] Quote/joke area
+  - Make settings page pretty
 
 
 // Optional

@@ -12,7 +12,6 @@
   <body>
     <header>
       <div id="action-bar">
-        <img src="icons/ic_add_white_24dp.png" id="show_quick_add" class="i18n">
         <img src="icons/ic_refresh_white_24dp.png" id="sync_now" class="i18n">
         <img src="icons/ic_settings_white_24dp.png" id="show_options" class="i18n">
       </div>
@@ -21,7 +20,7 @@
           <span class="i18n" id="logo_text">Google Calendar</span>
         </a>
       </div>
-      <div class="quote">Quote of the day</div>
+      <div class="quote"></div>
     </header>
     <div class="section-container">
       <section>
@@ -34,16 +33,9 @@
                 href="https://github.com/manastungare/google-calendar-crx/wiki/Troubleshooting">Problems?</a>
           </p>
         </div>
-        <div id="quick-add">
-          <h2 class="i18n" id="add_an_event">Add an Event</h2>
-          <select id="quick-add-calendar-list"/>
-          <textarea id="quick-add-event-title" rows="5" tabindex="1"></textarea>
-          <div class="quick-add-buttons">
-            <button id="quick_add_button" class="button i18n" tabindex="2">Quick Add</button>
-          </div>
-        </div>
         <div id="calendar-events"></div>
       </section>
     </div>
   </body>
+  <script src="quotes.js"></script>
 </html>
