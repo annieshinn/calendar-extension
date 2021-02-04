@@ -20,11 +20,11 @@
     "description": "Used in the popup view just before the actual calendar agenda."
   },
   "add_an_event": {
-    "message": "Add an Event",
+    "message": "Share your jokes and words of wisdom!",
     "description": "Header that appears just above the form that lets users add custom events."
   },
   "event_title_placeholder": {
-    "message": "E.g. “Dinner with friends 7pm tomorrow”",
+    "message": "How do you get rich with OOP? Inheritance.",
     "description": "Placeholder in the textarea where the user is instructed to type in the title of the event they want to create."
   },
   "no_events_today": {
@@ -87,9 +87,9 @@
     "message": "Busy",
     "description": "When a user does not have access to a particular calendar, the event title is not available; this placeholder text is used instead."
   },
-  "alert_new_event_added": {
-    "message": "This event has just been added to your calendar: ",
-    "description": "When a new event is added into the user's calendar, an alert message will be displayed for the user to click on it and see the details"
+  "alert_new_message_added": {
+    "message": "Your message has been added to the Codesmith database ",
+    "description": "When a new message is added into the database, an alert message will be displayed for the user to click on it and see the details"
   },
   "option_show_notifications": {
     "message": "Show notifications.",

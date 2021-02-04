@@ -94,6 +94,14 @@ section {
   padding: 0 8px;
 }
 
+#show_quick_add {
+  transition: transform 0.2s ease-in;
+}
+
+#show_quick_add.rotated {
+  transform: rotate(45deg);
+}
+
 .popup-title {
   height: 36px;
   font-size: 20px;
@@ -161,11 +169,13 @@ section {
 }
 
 #quick-add {
-  background: #fff;
+  background: #3B4252;
   margin: 8px 0;
   padding: 16px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.4);
-  border-radius: 2px;
+  box-shadow: 6 2px 4px rgba(0,0,0,0.4);
+  border-radius: 8px;
+  color: #ECEFF4;
+  font-weight: 400;
 }
 
 h2 {
@@ -176,6 +186,8 @@ h2 {
 
 #quick-add-event-title {
   width: 100%;
+  background-color: rgba(0,0,0,0.3);
+  color: #ECEFF4;
 }
 
 .quick-add-buttons {
@@ -328,10 +340,10 @@ Otherwise there would be a small black line. */
 }
 
 .button {
-  background: #0086f4;
+  background: rgb(73, 134, 231);
   border: 0;
-  border-radius: 2px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  border-radius: 4px;
+  box-shadow: 2 2px 4px rgba(0,0,0,0.2);
   color: #fff;
   cursor: pointer;
   display: inline-block;

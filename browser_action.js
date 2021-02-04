@@ -30,6 +30,8 @@ var browseraction = {};
  * @const
  * @private
  */
+browseraction.QUICK_ADD_API_URL_ =
+    'https://www.googleapis.com/calendar/v3/calendars/{calendarId}/events/quickAdd';
 
 /**
  * Milliseconds to wait before fading out the alert shown when the user adds
@@ -65,6 +67,8 @@ browseraction.KEY_CODE_LF = 10;
 /**
  * Char `a`, keyboard shortcut key for quick add box
  */
+browseraction.SHORTCUT_OPEN_QUICK_ADD = 'a';
+
 
 /**
  * Initializes UI elements in the browser action popup.
@@ -98,7 +102,7 @@ browseraction.fillMessages_ = function() {
     var i18nText = chrome.i18n.getMessage($(this).attr('id').toString());
     if (!i18nText) {
       chrome.extension.getBackgroundPage().background.log(
-        'Error getting string for: ', $(this).attr('id').toString());
+          'Error getting string for: ', $(this).attr('id').toString());
       return;
     }
 
@@ -122,7 +126,7 @@ browseraction.loadCalendarsIntoQuickAdd_ = function() {
   chrome.storage.local.get(constants.CALENDARS_STORAGE_KEY, function(storage) {
     if (chrome.runtime.lastError) {
       chrome.extension.getBackgroundPage().background.log(
-        'Error retrieving calendars:', chrome.runtime.lastError);
+          'Error retrieving calendars:', chrome.runtime.lastError);
     }
 
     if (storage[constants.CALENDARS_STORAGE_KEY]) {
@@ -146,12 +150,20 @@ browseraction.installButtonClickHandlers_ = function() {
     chrome.extension.sendMessage({method: 'authtoken.update'});
   });
 
+  $('#show_quick_add').on('click', function() {
+    browseraction.toggleQuickAddBoxVisibility_(!$('#quick-add').is(':visible'));
+  });
+
   $('#sync_now').on('click', function() {
     chrome.extension.sendMessage({method: 'events.feed.fetch'}, browseraction.showEventsFromFeed_);
   });
 
   $('#show_options').on('click', function() {
     chrome.tabs.create({'url': 'options.html'});
+  });
+
+  $('#quick_add_button').on('click', function() {
+    browseraction.addNewEventIntoCalendar_();
   });
 };
 
@@ -187,7 +199,28 @@ browseraction.installKeydownHandlers_ = function() {
     if ($(e.target).is('input, textarea, select')) {
       return;
     }
+
+    // Open quick add form on `a`
+    if (e.key.toLowerCase() === browseraction.SHORTCUT_OPEN_QUICK_ADD) {
+      e.stopPropagation();
+      e.preventDefault();
+      browseraction.toggleQuickAddBoxVisibility_(true);
+    }
   });
+};
+
+
+/** @private */
+browseraction.toggleQuickAddBoxVisibility_ = function(shouldShow) {
+  if (shouldShow) {
+    $('#show_quick_add').addClass('rotated');
+    $('#quick-add').slideDown(200);
+    $('#quick-add-event-title').focus();
+  } else {
+    $('#show_quick_add').removeClass('rotated');
+    $('#quick-add').slideUp(200);
+    $('#quick-add-event-title').blur();
+  }
 };
 
 /**
@@ -196,7 +229,7 @@ browseraction.installKeydownHandlers_ = function() {
  */
 browseraction.addNewEventIntoCalendar_ = function() {
   browseraction.createQuickAddEvent_(
-    $('#quick-add-event-title').val().toString(), $('#quick-add-calendar-list').val());
+      $('#quick-add-event-title').val().toString());
   $('#quick-add-event-title').val('');  // Remove the existing text from the field.
 };
 
@@ -209,7 +242,7 @@ browseraction.showLoginMessageIfNotAuthenticated_ = function() {
   chrome.identity.getAuthToken({'interactive': false}, function(authToken) {
     if (chrome.runtime.lastError || !authToken) {
       chrome.extension.getBackgroundPage().background.log(
-        'getAuthToken', chrome.runtime.lastError.message);
+          'getAuthToken', chrome.runtime.lastError.message);
       browseraction.stopSpinnerRightNow();
       $('#error').show();
       $('#action-bar').hide();
@@ -233,7 +266,7 @@ browseraction.listenForRequests_ = function() {
     switch (request.method) {
       case 'ui.refresh':
         chrome.extension.sendMessage(
-          {method: 'events.feed.get'}, browseraction.showEventsFromFeed_);
+            {method: 'events.feed.get'}, browseraction.showEventsFromFeed_);
         break;
 
       case 'sync-icon.spinning.start':
@@ -266,9 +299,9 @@ function showToast(parent, summary, linkUrl) {
   var toastDiv = $('<div>').addClass('alert-new-event event').attr('data-url', linkUrl);
   var toastDetails = $('<div>').addClass('event-details');
   var toastText = $('<div>')
-    .addClass('event-title')
-    .css('white-space', 'normal')
-    .text(chrome.i18n.getMessage('alert_new_event_added') + summary);
+                      .addClass('event-title')
+                      .css('white-space', 'normal')
+                      .text(chrome.i18n.getMessage('alert_new_message_added'));
 
   toastDetails.append(toastText);
   toastDiv.append(toastDetails);
@@ -285,6 +318,51 @@ function showToast(parent, summary, linkUrl) {
     $('.fab').fadeIn();
   }, browseraction.TOAST_FADE_OUT_DURATION_MS);
 }
+
+/** @private */
+browseraction.createQuickAddEvent_ = function(text, calendarId) {
+  var quickAddUrl =
+      browseraction.QUICK_ADD_API_URL_.replace('{calendarId}', encodeURIComponent(calendarId)) +
+      '?text=' + encodeURIComponent(text);
+  chrome.identity.getAuthToken({'interactive': false}, function(authToken) {
+    if (chrome.runtime.lastError || !authToken) {
+      chrome.extension.getBackgroundPage().background.log(
+          'getAuthToken', chrome.runtime.lastError.message);
+      return;
+    }
+
+    const dataMessage = JSON.stringify({ message : text});
+    console.log(dataMessage);
+
+
+    browseraction.startSpinner();
+    $.ajax({
+      type: 'POST',
+      url: 'https://codesmith-calendar.herokuapp.com/api/messages/',
+      data: { message : text },
+      headers: {'Content_type': 'application/JSON'},
+      success: function(response) {
+        showToast($('section'), response.summary);
+        browseraction.stopSpinner();
+        chrome.extension.sendMessage({method: 'events.feed.fetch'});
+      },
+      error: function(response) {
+        browseraction.stopSpinner();
+        $('#info_bar').text(chrome.i18n.getMessage('error_saving_new_event')).slideDown();
+        window.setTimeout(function() {
+          $('#info_bar').slideUp();
+        }, constants.INFO_BAR_DISMISS_TIMEOUT_MS);
+        chrome.extension.getBackgroundPage().background.log(
+            'Error adding Quick Add event', response.statusText);
+        if (response.status === 401) {
+          chrome.identity.removeCachedAuthToken({'token': authToken}, function() {});
+        }
+      }
+    });
+    $('#quick-add').slideUp(200);
+    $('#show_quick_add').toggleClass('rotated');
+  });
+};
 
 
 /**
