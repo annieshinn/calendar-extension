@@ -236,8 +236,9 @@ Otherwise there would be a small black line. */
 
 .start-time {
   color: #fff;
-  flex: 0 0 60px;
-  font-size: 13px;
+  flex: 0 0 70px;
+  font-size: 14px;
+  /* font-weight: 350; */
   overflow: hidden;
   text-align: center;
   /* Start and end times vertically aligned */

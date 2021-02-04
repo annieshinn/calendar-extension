@@ -72,7 +72,7 @@
     "description": "Tooltip text for when the extension is fetching the feed from the server."
   },
   "settings_header": {
-    "message": "Settings",
+    "message": "Codesmith Calendar Extension: Settings",
     "description": "The header for the Options section that deals with extension settings"
   },
   "calendar_list_header": {
