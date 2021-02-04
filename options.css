@@ -1,0 +1,72 @@
+/**
+ * Copyright 2010 and onwards Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+* {
+  font-family: system-ui,sans-serif;
+  font-size: 11pt;
+  color: #333;
+}
+
+html {
+  margin: 12px 0 0 155px;
+  min-width: 576px;
+  max-width: 738px;
+}
+
+article + article {
+  margin: 36px 0 0 0;
+}
+
+code {
+  font: 10pt monospace;
+  background: #efefef;
+  border-radius: 3px;
+  padding: 2px 4px;
+}
+
+h1 {
+  font-size: 14pt;
+  font-weight: normal;
+  margin: 12px 0;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #efefef;
+}
+
+h2 {
+  font-weight: normal;
+  font-size: 1.2em;
+}
+
+section {
+  margin-left: 18px;
+}
+
+label {
+  display: block;
+  margin: 6px 0;
+}
+
+.secondary {
+  color: #979CA0;
+}
+
+.calendar-checkbox {
+  -webkit-appearance: none;
+  vertical-align: middle;
+  border-radius: 2px;
+  height: 14px;
+  width: 14px;
+}

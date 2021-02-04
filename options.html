@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--
+ Copyright 2010 and onwards Google Inc.
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<html data-context="options-page">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="options.css">
+    <title class="i18n" data-msg="google_calendar_extension_name">Options</title>
+  </head>
+  <body>
+    <header>
+      <h1 class="i18n" data-msg="google_calendar_extension_name">Google Calendar</h1>
+    </header>
+    <article>
+      <h2 class="i18n" data-msg="settings_header">Settings</h2>
+      <section>
+        <label><input class="option" type="checkbox" name="badge-text-shown">
+          <span class="i18n" data-msg="option_show_time_until_next_event"></span>
+        </label>
+        <label><input class="option" type="checkbox" name="time_until_next_includes_all_day_events">
+          <span class="i18n" data-msg="option_time_until_next_includes_all_day_events"></span>
+        </label>
+        <label><input class="option" type="checkbox" name="show_notifications">
+          <span class="i18n" data-msg="option_show_notifications"></span>
+        </label>
+      </section>
+    </article>
+
+    <article>
+      <h2 class="i18n" data-msg="calendar_list_header">Calendars</h2>
+      <section id="calendar-list">
+      </section>
+    </article>
+
+    <script src="lib/jquery.min.js"></script>
+    <script src="lib/moment+langs.min.js"></script>
+    <script src="constants.js"></script>
+    <script src="utils.js"></script>
+    <script src="options.js"></script>
+  </body>
+</html>

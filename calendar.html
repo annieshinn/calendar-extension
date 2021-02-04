@@ -1,0 +1,49 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="browser_action.css" type="text/css">
+    <script src="lib/jquery.min.js"></script>
+    <script src="lib/moment+langs.min.js"></script>
+    <script src="constants.js"></script>
+    <script src="options.js"></script>
+    <script src="utils.js"></script>
+    <script src="browser_action.js"></script>
+  </head>
+  <body>
+    <header>
+      <div id="action-bar">
+        <img src="icons/ic_add_white_24dp.png" id="show_quick_add" class="i18n">
+        <img src="icons/ic_refresh_white_24dp.png" id="sync_now" class="i18n">
+        <img src="icons/ic_settings_white_24dp.png" id="show_options" class="i18n">
+      </div>
+      <div class="popup-title">
+        <a data-href="calendar_ui_url" target="_blank">
+          <span class="i18n" id="logo_text">Google Calendar</span>
+        </a>
+      </div>
+      <div class="quote">Quote of the day</div>
+    </header>
+    <div class="section-container">
+      <section>
+        <div id="info_bar"></div>
+        <div id="error">
+          <p class="i18n" id="authorization_explanation"></p>
+          <p><button class="button i18n" id="authorization_required"></button></p>
+          <p>
+            <a class="i18n" id="problems" target="_blank"
+                href="https://github.com/manastungare/google-calendar-crx/wiki/Troubleshooting">Problems?</a>
+          </p>
+        </div>
+        <div id="quick-add">
+          <h2 class="i18n" id="add_an_event">Add an Event</h2>
+          <select id="quick-add-calendar-list"/>
+          <textarea id="quick-add-event-title" rows="5" tabindex="1"></textarea>
+          <div class="quick-add-buttons">
+            <button id="quick_add_button" class="button i18n" tabindex="2">Quick Add</button>
+          </div>
+        </div>
+        <div id="calendar-events"></div>
+      </section>
+    </div>
+  </body>
+</html>
