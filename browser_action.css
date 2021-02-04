@@ -20,7 +20,7 @@
 }
 
 body {
-  background: #000000;
+  background: #2E3440;
   font-size: 14px;
   height: 480px;
   overflow-y: scroll;
@@ -28,6 +28,7 @@ body {
   line-height: 20px;
   padding: 0;
   margin: 0;
+  padding-left: 7px;
 }
 
 /* Customized Scrollbar */
@@ -68,7 +69,7 @@ textarea {
 }
 
 header {
-  background: #0086f4;
+  background: #2E3440;
   padding: 12px;
   position: relative;
   color: #fff;
@@ -95,26 +96,29 @@ section {
 
 .popup-title {
   height: 36px;
-  font-size: 16px;
+  font-size: 20px;
+  font-weight: 600;
   line-height: 24px;
+  text-shadow: 4px 4px 2px rgba(0,0,0,0.1);
 }
 
 .popup-title a {
-  color: #fff;
+  color: #ECEFF4;
   outline: none;
-  text-decoration: none;
+  text-decoration: solid;
 }
 
 .quote {
-  background: #FFD54F;
+  background: #3B4252;
   padding: 4px 8px;
   padding-bottom: 5px;
   border-radius: 8px;
-  color: #000;
+  color: #b5bac4;
   overflow: hidden;
   /* position: relative; */
   /* height: 30px; */
   text-align: center;
+  box-shadow: 6px 2px 4px rgba(0,0,0,0.1);
 }
 
 #action-bar {
@@ -196,15 +200,15 @@ Otherwise there would be a small black line. */
 }
 
 .date-header {
-  color: #666;
-  background: #2d2d2d;
+  color: #E5E9F0;
+  background: #232831;
   font-size: 16px;
   padding: 4px 0;
   position: sticky;
   top: 0;
   z-index: 1;
   /* box-shadow on both sides to hide the underlying shadow of an event */
-  box-shadow: -5px 0 0 0 #e5e5e5, 5px 0 0 0 #e5e5e5;
+  box-shadow: -5px 0 0 0 #232831, 5px 0 0 0 #232831;
 }
 
 .no-events-today {
@@ -213,9 +217,9 @@ Otherwise there would be a small black line. */
 }
 
 .event {
-  background: #202020;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  color: #87C0D0;
+  background: #3B4252;
+  box-shadow: 6px 2px 4px rgba(0,0,0,0.1);
+  color: #ECEFF4;
   cursor: pointer;
   display: flex;
   margin: 0 0 4px 0;
@@ -233,7 +237,7 @@ Otherwise there would be a small black line. */
 .start-time {
   color: #fff;
   flex: 0 0 60px;
-  font-size: 12px;
+  font-size: 13px;
   overflow: hidden;
   text-align: center;
   /* Start and end times vertically aligned */
@@ -269,7 +273,7 @@ Otherwise there would be a small black line. */
 }
 
 .event-location {
-  color: #666;
+  color: #9a9ea7;
   font-size: 12px;
   text-decoration: none;
 }
@@ -312,9 +316,9 @@ Otherwise there would be a small black line. */
 .location-icon,
 .video-call-icon {
   float: right;
-  height: 15px;
+  height: 30px;
   padding: 0 3px;
-  width: 21px;
+  width: 30px;
 }
 
 .attachment-icon {
